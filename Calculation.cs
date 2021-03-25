@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class Calculation
+    public class Calculation
     {
         private long count = 0;
         private long n = 0;
@@ -44,7 +44,7 @@ namespace Test
             }
             set
             {
-
+                if(value.Length < N) throw new Exception();
                 for(int i = 0; i < value.Length; i++)
                 {
                     if (value[i] < 1)
@@ -55,8 +55,15 @@ namespace Test
                 v = value;
             }
         }
+        public Calculation(long _n, long _m, long[] _v)
+        {
+            N = _n;
+            M = _m;
+            V = _v;
+        }
        
-        public long GetResult()
+        public long GetResult(out long[] counts)
+
         {
             //time - мінімальний час виконання роботи
             //time -> min
@@ -82,6 +89,14 @@ namespace Test
                 ++x;
                 GetCount( x);
             }
+            long realNumb = 0;
+            counts = new long[n];
+            for (int i = 0; i < n - 1; i++)
+            {
+                realNumb += (x / v[i]);
+                counts[i] = x / v[i];
+            }
+            counts[n - 1] = m - realNumb;
             return x;
         }
         void GetCount(long x)

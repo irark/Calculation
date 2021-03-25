@@ -15,11 +15,11 @@ namespace Test
         private long n = 0;
         private long m = 0;
         private long[] v;
+        private long[] counts;
         private Calculation calculation;
         public Form1()
         {
             InitializeComponent();
-            calculation = new Calculation();
             
         }
 
@@ -61,9 +61,8 @@ namespace Test
             if (!result || m < 1)
             {
                 MessageBox.Show("Incorrect data. Enter an integer greater then 0", "ERROR", MessageBoxButtons.OK);
-                tbN.Text = "";
+                tbM.Text = "";
             }
-            tbN.Text = n.ToString();
         }
         private void GetV()
         {
@@ -87,10 +86,8 @@ namespace Test
             GetV();
             try
             {
-                calculation.N = n;
-                calculation.M = m;
-                calculation.V = v;
-                long result = calculation.GetResult();
+                calculation = new Calculation(n, m, v);
+                long result = calculation.GetResult(out counts);
                 tbResult.Text = result.ToString();
                 ShowResult(result);
             }
@@ -106,13 +103,11 @@ namespace Test
             dgvResult.ColumnCount = (int)n;
             dgvResult.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             FillHeaders("team member {0} edits ", dgvResult);
-            long realNumb = 0;
-            for(int i = 0; i < n - 1; i++ )
+         
+            for(int i = 0; i < n; i++ )
             {
-                realNumb += (x / v[i]);
-                dgvResult[i, 0].Value = (x / v[i]).ToString();
+                dgvResult[i, 0].Value = counts[i].ToString();
             }
-            dgvResult[(int)n - 1, 0].Value = (m - realNumb).ToString();
         }
 
         private void tbN_TextChanged(object sender, EventArgs e)
