@@ -76,9 +76,9 @@ namespace Test
             this.lbSpeeds.AutoSize = true;
             this.lbSpeeds.Location = new System.Drawing.Point(52, 145);
             this.lbSpeeds.Name = "lbSpeeds";
-            this.lbSpeeds.Size = new System.Drawing.Size(262, 17);
+            this.lbSpeeds.Size = new System.Drawing.Size(223, 17);
             this.lbSpeeds.TabIndex = 3;
-            this.lbSpeeds.Text = "speed of the team members (in minutes)";
+            this.lbSpeeds.Text = "time to edit one photo (in minutes)";
             // 
             // lbResult
             // 

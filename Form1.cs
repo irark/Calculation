@@ -106,10 +106,13 @@ namespace Test
             dgvResult.ColumnCount = (int)n;
             dgvResult.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             FillHeaders("team member {0} edits ", dgvResult);
-            for(int i = 0; i < n; i++ )
+            long realNumb = 0;
+            for(int i = 0; i < n - 1; i++ )
             {
-                dgvResult[i, 0].Value = ((int)(x / v[i])).ToString();
+                realNumb += (x / v[i]);
+                dgvResult[i, 0].Value = (x / v[i]).ToString();
             }
+            dgvResult[(int)n - 1, 0].Value = (m - realNumb).ToString();
         }
 
         private void tbN_TextChanged(object sender, EventArgs e)
